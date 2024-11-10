@@ -20,31 +20,6 @@ public class AlienStalk : MonoBehaviour
 
         rb.centerOfMass = new Vector3(0, -0.5f, 0);
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    Vector3 directionToPlayer = (player.position - transform.position).normalized;
-
-    //    float distanceToPlayer  = Vector3.Distance(player.position, transform.position);
-    //    if (distanceToPlayer <= invisibleDistance )
-    //    {
-    //        alienRender.enabled = false;
-    //    }
-    //    else
-    //    {
-    //        alienRender.enabled = true;
-    //    }
-
-    //    if (distanceToPlayer > stalkingDistance )
-    //    {
-    //        float angle = rotationSpeed * Time.deltaTime;
-    //        transform.RotateAround(player.position, Vector3.up, angle);
-
-    //        Vector3 movement = transform.forward * walkSpeed * Time.deltaTime;
-    //        rb.MovePosition(transform.position +  movement);
-    //    }
-    //}
     void Update()
     {
         Vector3 currentRotation = transform.rotation.eulerAngles;
