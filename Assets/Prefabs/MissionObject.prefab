@@ -119,4 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 5
-  playerCamera: {fileID: 0}
+  interactKey: 101
+  promptPrefab: {fileID: 4832672934462976038, guid: 880d98a09b146984dbb25bca3e7b972e, type: 3}
