@@ -6,6 +6,7 @@ public class StateMachine : MonoBehaviour
 {
     public State currentState;
 
+
     // Update is called once per frame
     void Update()
     {
@@ -15,7 +16,7 @@ public class StateMachine : MonoBehaviour
     {
         State nextState = currentState?.RunCurrentState();
 
-        if (nextState != null )
+        if (nextState != null && nextState != currentState )
         {
             SwitchToNextState( nextState );
         }
@@ -24,4 +25,5 @@ public class StateMachine : MonoBehaviour
     {
         currentState = nextState;
     }
+
 }

@@ -27,7 +27,7 @@ public class AlienStalk : MonoBehaviour
 
         if (isStalking)
         {
-           
+
 
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             //float distanceToPlayer = Vector3.Distance(player.position, transform.position);
@@ -48,7 +48,7 @@ public class AlienStalk : MonoBehaviour
     }
     public void StopStalking()
     {
-        isStalking= false;
+        isStalking = false;
     }
     public void EnableInvisible()
     {
@@ -65,11 +65,12 @@ public class AlienStalk : MonoBehaviour
         {
             StartStalking();
             EnableInvisible();
-        } else if (!isPlayerInsideTrigger)
+        }
+        else if (!isPlayerInsideTrigger)
         {
             StopStalking();
             DisableInvisible();
         }
     }
-  
+
 }

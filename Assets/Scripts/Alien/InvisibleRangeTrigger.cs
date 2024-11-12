@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class InvisibleRangeTrigger : MonoBehaviour
 {
-    private AlienStalk alienStalk;
+    private StalkState alienStalk;
 
     // Start is called before the first frame update
     void Start()
     {
-        alienStalk = GetComponentInParent<AlienStalk>();
+        alienStalk = GetComponentInParent<StalkState>();
     }
 
     // Update is called once per frame

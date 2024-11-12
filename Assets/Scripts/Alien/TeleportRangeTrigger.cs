@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class TeleportRangeTrigger : MonoBehaviour
 {
-    private AlienTeleport alienTeleport;
+    private TeleportState alienTeleport;
     // Start is called before the first frame update
     void Start()
     {
-        alienTeleport = GetComponentInParent<AlienTeleport>();
+        alienTeleport = GetComponentInParent<TeleportState>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+
             alienTeleport.OnTriggerDetected(false);
         }
     }
@@ -28,6 +29,7 @@ public class TeleportRangeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Teleporting");
             alienTeleport.OnTriggerDetected(true);
         }
     }
