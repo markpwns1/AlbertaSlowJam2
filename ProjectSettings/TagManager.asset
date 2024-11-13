@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Prompt
   - Canvas
+  - InvisibleRange
   layers:
   - Default
   - TransparentFX
