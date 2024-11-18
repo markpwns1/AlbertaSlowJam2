@@ -20,6 +20,7 @@ public class HuntState : State
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
         if (distanceToPlayer >= maxRange )
         {
+            EnableInvisible();
             inTeleportState = true;
             return teleportState;
         }
@@ -33,7 +34,7 @@ public class HuntState : State
         Debug.Log("In Hunt State");
         rb = GetComponentInParent<Rigidbody>();
         alienRender = GetComponentInParent<Renderer>();
-        alienRender.enabled = true;
+        DisableInvisible();
     }
 
     private void MoveTowardsPlayer()
@@ -54,5 +55,8 @@ public class HuntState : State
         rb.MovePosition(transform.parent.position + movement);
     }
 
-   
+    public void EnableInvisible() => alienRender.enabled = false;
+    public void DisableInvisible() => alienRender.enabled = true;
+
+
 }

@@ -30,6 +30,7 @@ public class StalkState : State
 
         } else if (distanceToPlayer <= huntRange)
         {
+            StopStalking();
             return huntState;
         }
 
