@@ -7,22 +7,32 @@ public class HuntState : State
     private Rigidbody rb;
     private Renderer alienRender;
     public Transform player;
+
     public float walkSpeed = 9f;
     public float rotationSpeed = 5f;
     public float maxRange = 80f;
+    public bool isAttacking = false;
 
     public TeleportState teleportState;
+    public AttackState attackState;
+
     public bool inTeleportState;
 
 
     public override State RunCurrentState()
     {
+        Debug.Log("in Hunt State");
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
         if (distanceToPlayer >= maxRange )
         {
             EnableInvisible();
             inTeleportState = true;
             return teleportState;
+        }
+        if (distanceToPlayer <= 5f)
+        {
+            Debug.Log("going into attack State");
+            return attackState;
         }
 
         MoveTowardsPlayer();
@@ -35,6 +45,7 @@ public class HuntState : State
         rb = GetComponentInParent<Rigidbody>();
         alienRender = GetComponentInParent<Renderer>();
         DisableInvisible();
+        
     }
 
     private void MoveTowardsPlayer()
@@ -57,6 +68,20 @@ public class HuntState : State
 
     public void EnableInvisible() => alienRender.enabled = false;
     public void DisableInvisible() => alienRender.enabled = true;
+    public void EnableAttack() => isAttacking = true;
+    public void DisableAttack() => isAttacking = false;
 
+    public void OnAttackTriggerDetected(bool isAttackTrigger)
+    {
+        if (isAttackTrigger)
+        {
+            Debug.Log("attack trigger interacted");
+            EnableAttack();
+        }
+        else
+        {
+            DisableAttack();
+        }
+    }
 
 }

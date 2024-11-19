@@ -47,6 +47,7 @@ public class TeleportState : State
 
     private void TeleportToPlayer()
     {
+        EnableInvisible();
         Debug.Log("Alien Creeps closer");
         Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
 

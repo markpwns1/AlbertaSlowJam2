@@ -6,23 +6,33 @@ public class StalkState : State
 {
     public TeleportState teleportState;
     public HuntState huntState;
+    public AttackState attackState;
+
+    private Rigidbody rb;
+    private Renderer alienRender;
+    public Transform player;
+
     public bool inTeleportState = false;
     public bool inHuntState = false;
     public float maxRange = 80f;
     public float huntRange = 20f;
 
-    private Rigidbody rb;
-    private Renderer alienRender;
-    public Transform player;
     public float stalkingDistance = 5f;
     public float walkSpeed = 5.5f;
     public float rotationSpeed = 5f;
     public float invisibleDistance = 5.5f;
     public bool isStalking = false;
+    //public bool isAttacking = false;
 
     public override State RunCurrentState()
     {
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
+
+        //if (isAttacking)
+        //{
+        //    Debug.Log("going into attack state");
+        //    return attackState;
+        //}
 
         if (distanceToPlayer >= maxRange)
         {
@@ -38,6 +48,7 @@ public class StalkState : State
         {
             StalkPlayer();
         }
+        
 
         return this;
     }
@@ -91,6 +102,7 @@ public class StalkState : State
 
     public void EnableInvisible() => alienRender.enabled = false;
     public void DisableInvisible() => alienRender.enabled = true;
+    //public void EnableAttack() => isAttacking = true;
 
     public void OnTriggerDetected(bool isPlayerInsideTrigger)
     {
@@ -102,4 +114,16 @@ public class StalkState : State
             StopStalking();
         }
     }
+    //public void OnAttackTriggerDetected(bool isAttackTrigger)
+    //{
+    //    if (isAttackTrigger)
+    //    {
+    //        Debug.Log("attack trigger interacted");
+    //        EnableAttack();
+    //    } 
+    //    //else
+    //    //{
+    //    //    isAttacking= false;
+    //    //}
+    //}
 }
