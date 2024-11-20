@@ -157,6 +157,7 @@ MonoBehaviour:
   rotationSpeed: 5
   maxRange: 60
   isAttacking: 0
+  attackRange: 5
   teleportState: {fileID: 1148766040}
   attackState: {fileID: 1518863964}
   inTeleportState: 0
@@ -172,8 +173,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 943184451}
+  m_Children: []
   m_Father: {fileID: 1842721550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &17936749
@@ -844,7 +844,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 15510245}
+  m_Father: {fileID: 1518863963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &943184452
 SphereCollider:
@@ -1019,7 +1019,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 943184451}
   m_Father: {fileID: 1842721550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1518863964
@@ -1037,7 +1038,7 @@ MonoBehaviour:
   huntState: {fileID: 15510244}
   player: {fileID: 753511777}
   attackRange: 5
-  jumpForce: 6.8
+  jumpForce: 8.08
   jumpDuration: 1
 --- !u!1 &1601498601
 GameObject:

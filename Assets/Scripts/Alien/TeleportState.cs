@@ -20,6 +20,15 @@ public class TeleportState : State
         Debug.Log("In Teleport State");
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
 
+        Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
+
+        if (directionToPlayer != Vector3.zero)
+        {
+            Quaternion alienRotation = Quaternion.LookRotation(directionToPlayer);
+            Quaternion smoothRotation = Quaternion.Slerp(transform.parent.rotation, alienRotation, rotationSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(Quaternion.Euler(0, smoothRotation.eulerAngles.y, 0));
+        }
+
         if (distanceToPlayer <= minRange )
         {
             return stalkState;

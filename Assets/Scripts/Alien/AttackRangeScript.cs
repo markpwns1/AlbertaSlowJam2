@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AttackRangeScript : MonoBehaviour
 {
-    private HuntState huntState;
+    private AttackState attackState;
 
     // Start is called before the first frame update
     void Start()
     {
-        huntState = GetComponentInParent<HuntState>();
+        attackState = GetComponentInParent<AttackState>();
     }
 
     // Update is called once per frame
@@ -23,14 +23,14 @@ public class AttackRangeScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("player entered attack range");
-            huntState.OnAttackTriggerDetected(true);
+            attackState.OnAttackTriggerDetected(true);
         }
     }
     private void OnTriggerExt(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            huntState.OnAttackTriggerDetected(false);
+            attackState.OnAttackTriggerDetected(false);
         }
     }
 

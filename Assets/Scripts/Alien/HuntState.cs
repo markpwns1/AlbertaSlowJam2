@@ -12,6 +12,7 @@ public class HuntState : State
     public float rotationSpeed = 5f;
     public float maxRange = 80f;
     public bool isAttacking = false;
+    public float attackRange = 5f;
 
     public TeleportState teleportState;
     public AttackState attackState;
@@ -21,6 +22,15 @@ public class HuntState : State
 
     public override State RunCurrentState()
     {
+        Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
+
+        if (directionToPlayer != Vector3.zero)
+        {
+            Quaternion alienRotation = Quaternion.LookRotation(directionToPlayer);
+            Quaternion smoothRotation = Quaternion.Slerp(transform.parent.rotation, alienRotation, rotationSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(Quaternion.Euler(0, smoothRotation.eulerAngles.y, 0));
+        }
+
         Debug.Log("in Hunt State");
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
         if (distanceToPlayer >= maxRange )
@@ -29,7 +39,7 @@ public class HuntState : State
             inTeleportState = true;
             return teleportState;
         }
-        if (distanceToPlayer <= 5f)
+        if (distanceToPlayer <= attackRange)
         {
             Debug.Log("going into attack State");
             return attackState;
@@ -68,20 +78,20 @@ public class HuntState : State
 
     public void EnableInvisible() => alienRender.enabled = false;
     public void DisableInvisible() => alienRender.enabled = true;
-    public void EnableAttack() => isAttacking = true;
-    public void DisableAttack() => isAttacking = false;
+    //public void EnableAttack() => isAttacking = true;
+    //public void DisableAttack() => isAttacking = false;
 
-    public void OnAttackTriggerDetected(bool isAttackTrigger)
-    {
-        if (isAttackTrigger)
-        {
-            Debug.Log("attack trigger interacted");
-            EnableAttack();
-        }
-        else
-        {
-            DisableAttack();
-        }
-    }
+    //public void OnAttackTriggerDetected(bool isAttackTrigger)
+    //{
+    //    if (isAttackTrigger)
+    //    {
+    //        Debug.Log("attack trigger interacted");
+    //        EnableAttack();
+    //    }
+    //    else
+    //    {
+    //        DisableAttack();
+    //    }
+    //}
 
 }
