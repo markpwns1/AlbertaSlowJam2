@@ -17,6 +17,7 @@ public class TeleportState : State
 
     public override State RunCurrentState()
     {
+        EnableInvisible();
         Debug.Log("In Teleport State");
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
 
@@ -54,24 +55,59 @@ public class TeleportState : State
         
     }
 
+    //private void TeleportToPlayer()
+    //{
+    //    EnableInvisible();
+    //    Debug.Log("Alien Creeps closer");
+    //    Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
+
+    //    if (directionToPlayer != Vector3.zero)
+    //    {
+    //        Quaternion alienRotation = Quaternion.LookRotation(directionToPlayer);
+    //        Quaternion smoothRotation = Quaternion.Slerp(transform.parent.rotation, alienRotation, rotationSpeed * Time.fixedDeltaTime);
+    //        rb.MoveRotation(Quaternion.Euler(0, smoothRotation.eulerAngles.y, 0));
+    //    }
+
+    //    Vector3 newPosition = player.position + directionToPlayer * teleportOffset;
+
+    //    rb.position = newPosition;
+    //    //Vector3 newPosition = player.position + directionToPlayer * teleportOffset;
+    //    //transform.parent.position = newPosition;
+    //}
+
     private void TeleportToPlayer()
     {
         EnableInvisible();
         Debug.Log("Alien Creeps closer");
-        Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
 
-        if (directionToPlayer != Vector3.zero)
+        float randomDistance = Random.Range(40f, 50f);
+
+        Vector3 randomDirection = Random.insideUnitSphere.normalized * randomDistance;
+        randomDirection.y = 0; // Ensures movement is horizontal
+
+        
+        Vector3 intendedPosition = player.position + randomDirection;
+
+        Vector3 raycastOrigin = new Vector3(intendedPosition.x, intendedPosition.y + 10f, intendedPosition.z);
+        RaycastHit hit;
+
+        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, 20f))
         {
-            Quaternion alienRotation = Quaternion.LookRotation(directionToPlayer);
-            Quaternion smoothRotation = Quaternion.Slerp(transform.parent.rotation, alienRotation, rotationSpeed * Time.fixedDeltaTime);
-            rb.MoveRotation(Quaternion.Euler(0, smoothRotation.eulerAngles.y, 0));
+            intendedPosition = hit.point; // Snap to the ground point
+            Debug.Log($"Teleported to ground point at {intendedPosition}");
+        }
+        else
+        {
+            Debug.Log("Failed to teleport to ground. Aborting teleport.");
+            return; // Abort teleport if no ground is found
         }
 
-        Vector3 newPosition = player.position + directionToPlayer * teleportOffset;
+        // Teleports the alien
+        rb.position = intendedPosition;
 
-        rb.position = newPosition;
-        //Vector3 newPosition = player.position + directionToPlayer * teleportOffset;
-        //transform.parent.position = newPosition;
+        // Align the alien's rotation with the ground's normal
+        transform.parent.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal) * transform.parent.rotation;
+
     }
 
     public void EnableInvisible() => alienRender.enabled = false;
