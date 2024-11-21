@@ -8,6 +8,7 @@ public class TeleportState : State
     public StalkState stalkState;
     public bool inStalkState = false;
     public float minRange = 60f;
+    public float maxRange = 80f;
     public float rotationSpeed = 5f;
 
     private Renderer alienRender;
@@ -17,6 +18,8 @@ public class TeleportState : State
 
     public override State RunCurrentState()
     {
+        
+
         EnableInvisible();
         Debug.Log("In Teleport State");
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
@@ -37,6 +40,11 @@ public class TeleportState : State
 
         Vector3 currentRotation = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(0, currentRotation.y, 0);
+         
+        if (distanceToPlayer >= maxRange )
+        {
+            isPlayerTooFar=true;
+        }
 
         if (isPlayerTooFar )
         {

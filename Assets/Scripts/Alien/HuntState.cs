@@ -39,11 +39,11 @@ public class HuntState : State
             inTeleportState = true;
             return teleportState;
         }
-        if (distanceToPlayer <= attackRange)
-        {
-            Debug.Log("going into attack State");
-            return attackState;
-        }
+        //if (distanceToPlayer <= attackRange)
+        //{
+        //    Debug.Log("going into attack State");
+        //    return attackState;
+        //}
 
         MoveTowardsPlayer();
         return this;

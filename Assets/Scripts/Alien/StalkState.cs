@@ -26,6 +26,8 @@ public class StalkState : State
 
     public override State RunCurrentState()
     {
+        StartStalking();
+
         Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
 
         if (directionToPlayer != Vector3.zero)
@@ -45,6 +47,7 @@ public class StalkState : State
 
         if (distanceToPlayer >= maxRange)
         {
+
             return teleportState;
 
         } else if (distanceToPlayer <= huntRange)
