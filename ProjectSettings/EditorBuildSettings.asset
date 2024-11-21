@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CarterScene.unity
+    guid: 9ef832efd804a3d45afe488c2ecf4e44
+  - enabled: 1
+    path: Assets/Scenes/DayChangeScene.unity
+    guid: 57a31ca6de17ac94086f1f3fd1981850
   m_configObjects: {}

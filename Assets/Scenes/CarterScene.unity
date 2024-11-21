@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c761fce06f4414440a8f5b96f1344149, type: 2}
+    - target: {fileID: 54146067977150630, guid: 40d595e471e4b5c47bc2c4ed8c14879b, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114227812649932694, guid: 40d595e471e4b5c47bc2c4ed8c14879b, type: 3}
       propertyPath: floatiness
       value: 0.9
