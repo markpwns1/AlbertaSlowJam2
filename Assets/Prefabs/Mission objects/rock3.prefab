@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8834184074168672410
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2853.6577
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 121.0414
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1361.7792
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.2461383
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.24613836
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.66288453
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6628846
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 49.259
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      propertyPath: m_Name
+      value: rock3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 712272965890776659}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2730391390623483509}
+  m_SourcePrefab: {fileID: 100100000, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+--- !u!1 &8527630000054181323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+  m_PrefabInstance: {fileID: 8834184074168672410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &712272965890776659
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527630000054181323}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: aedbd8c7b60d14f4e81d9670e2f4b753, type: 3}
+--- !u!114 &2730391390623483509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527630000054181323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6905ae36cddad84488fbecf3a212730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAction: Scan rock
+  promptText: Press E to scan
+  disappearWhenComplete: 0

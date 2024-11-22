@@ -11,6 +11,7 @@ public class MoonbaseDoor : MonoBehaviour
     void Start()
     {
         interacter = new Interacter(this.gameObject, OnInteract, "Press E to end the day", interactKey: KeyCode.E);
+        interacter.SetInteractable(false);
     }
 
     // Update is called once per frame
@@ -19,8 +20,12 @@ public class MoonbaseDoor : MonoBehaviour
         interacter.Update();
     }
 
-    void OnInteract() {
+    private void OnInteract() {
         Debug.Log("Interacting with door");
         SceneManager.LoadScene("DayChangeScene");
+    }
+
+    public void Activate() {
+        interacter.SetInteractable(true);
     }
 }

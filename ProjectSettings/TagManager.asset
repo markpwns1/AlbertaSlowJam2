@@ -9,6 +9,11 @@ TagManager:
   - InvisibleRange
   - Enemy
   - GameOverCollider
+  - Mission1
+  - Mission2
+  - Mission3
+  - Mission4
+  - Mission5
   layers:
   - Default
   - TransparentFX

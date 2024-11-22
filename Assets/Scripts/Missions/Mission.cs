@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class Mission
 {
-    private GameObject objectPrefab;
     private List<MissionObjective> missionObjectives;
     private string title;
 
-    public Mission(GameObject objectPrefab, string title)
+    public Mission(string title)
     {
-        this.objectPrefab = objectPrefab;
         missionObjectives = new List<MissionObjective>();
         this.title = title;
     }
 
-    public void AddObjective(string objective)
-    {
-        MissionObjective newObjective = new(objectPrefab, objective);
-        missionObjectives.Add(newObjective);
+    public void AddObjective(GameObject missionObject) {
+        missionObjectives.Add(new MissionObjective(missionObject));
+    }
+
+    public bool IsComplete() {
+        bool res = true;
+        foreach (MissionObjective obj in missionObjectives) {
+            if (!obj.IsComplete()) {
+                res = false;
+            }
+        }
+        return res;
     }
 
     public string Log()

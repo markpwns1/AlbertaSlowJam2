@@ -6,24 +6,24 @@ using Random = UnityEngine.Random;
 
 public class MissionObjective
 {
-    private GameObject gameObject;
-    private string objective;
+    private GameObject missionObject;
+    private MissionObjectBehaviour objectBehaviour;
     private bool complete;
     private Vector3 objectLocation;
 
-    public MissionObjective(GameObject prefab, string objective)
-    {
-        this.objective = objective;
-        this.objectLocation = new(Random.Range(-100, 100), 0, Random.Range(-100, 100));
-        gameObject = MonoBehaviour.Instantiate(prefab, objectLocation, Quaternion.identity);
-        MissionObjectBehaviour objectBehaviour = gameObject.GetComponent<MissionObjectBehaviour>();
-        objectBehaviour.objective = this;
+    public MissionObjective (GameObject missionObject) {
+        this.missionObject = missionObject;
+        this.objectBehaviour = missionObject.GetComponent<MissionObjectBehaviour>();
+        this.objectLocation = missionObject.transform.position;
         this.complete = false;
+
+        this.objectBehaviour.SetObjective(this);
+        this.objectBehaviour.Activate();
     }
 
     public string GetObjectiveText()
     {
-        string obj = (objective + " at (" + Math.Round(objectLocation.x) + ", " + Math.Round(objectLocation.z) + ")");
+        string obj = (objectBehaviour.playerAction + " at (" + Math.Round(objectLocation.x) + ", " + Math.Round(objectLocation.z) + ")");
         // Add a strikethrough if it's finished
         if (complete)
         {
@@ -36,10 +36,12 @@ public class MissionObjective
     {
         Debug.Log("Objective complete!");
         complete = true;
-        GameObject.Destroy(gameObject);
+        if (objectBehaviour.disappearWhenComplete) {
+            GameObject.Destroy(missionObject);
+        }
     }
 
-    public bool GetComplete()
+    public bool IsComplete()
     {
         return complete;
     }
