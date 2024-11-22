@@ -7,6 +7,8 @@ public class AlienGameOver : MonoBehaviour
     public GameOverManager gameOverManager;
     public Collider gameOverCollider;
 
+    public StateMachine stateMachine;
+
     //private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -43,8 +45,11 @@ public class AlienGameOver : MonoBehaviour
         // Check if the player's collider triggered the alien's trigger collider
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered the alien's game-over area.");
-            gameOverManager.ShowGameOver();
+            if (stateMachine.currentState is HuntState)
+            {
+                Debug.Log("Player entered the alien's game-over area.");
+                gameOverManager.ShowGameOver();
+            }
         }
     }
 }

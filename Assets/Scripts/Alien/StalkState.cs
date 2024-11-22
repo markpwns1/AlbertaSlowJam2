@@ -24,6 +24,9 @@ public class StalkState : State
     public bool isStalking = false;
     //public bool isAttacking = false;
 
+    private float timer = 0f;
+    public float checkInterval = 10f;
+
     public override State RunCurrentState()
     {
         StartStalking();
@@ -50,10 +53,17 @@ public class StalkState : State
 
             return teleportState;
 
-        } else if (distanceToPlayer <= huntRange)
+        }
+        timer += Time.deltaTime;
+
+        if (timer >= checkInterval)
         {
-            StopStalking();
-            return huntState;
+            timer = 0f;
+            if (distanceToPlayer <= huntRange && ShouldEnterHuntState()) // if plaayer withing range and rolled chance to go into hunt
+            {
+                StopStalking();
+                return huntState;
+            }
         }
 
         if (isStalking)
@@ -100,6 +110,15 @@ public class StalkState : State
 
     }
 
+    private bool ShouldEnterHuntState()
+    {
+        // Each day after day 1 increases by 25% chance for huntState
+        float huntProbability = Mathf.Clamp((SharedData.gameDay - 1) * 25f, 0f, 100f);
+        float randomValue = Random.Range(0f, 100f);
+        Debug.Log("Day: " + SharedData.gameDay + ", Probability: " + huntProbability+"%" + ", Rolled Chance: " + randomValue);
+        return randomValue <= huntProbability;
+    }
+
     public void StartStalking()
     {
         isStalking=true;
@@ -126,6 +145,8 @@ public class StalkState : State
             StopStalking();
         }
     }
+
+
     //public void OnAttackTriggerDetected(bool isAttackTrigger)
     //{
     //    if (isAttackTrigger)

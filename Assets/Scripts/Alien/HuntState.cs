@@ -8,7 +8,7 @@ public class HuntState : State
     private Renderer alienRender;
     public Transform player;
 
-    public float walkSpeed = 9f;
+    public float walkSpeed;
     public float rotationSpeed = 5f;
     public float maxRange = 80f;
     public bool isAttacking = false;
@@ -55,6 +55,8 @@ public class HuntState : State
         rb = GetComponentInParent<Rigidbody>();
         alienRender = GetComponentInParent<Renderer>();
         DisableInvisible();
+
+        WalkSpeedByDay();
         
     }
 
@@ -74,6 +76,18 @@ public class HuntState : State
         // Moves alien towards player
         Vector3 movement = transform.parent.forward * walkSpeed * Time.fixedDeltaTime;
         rb.MovePosition(transform.parent.position + movement);
+    }
+
+    private void WalkSpeedByDay()
+    {
+        float baseSpeed = 5f;
+        float speedIncrement = 2f;
+
+        int effectiveDay = Mathf.Clamp(SharedData.gameDay, 1, 5);
+
+        walkSpeed = baseSpeed + (effectiveDay -1) * speedIncrement;
+
+        Debug.Log("Day: "+SharedData.gameDay+", Effective Day: "+effectiveDay+", Walk Speed: "+walkSpeed);
     }
 
     public void EnableInvisible() => alienRender.enabled = false;
