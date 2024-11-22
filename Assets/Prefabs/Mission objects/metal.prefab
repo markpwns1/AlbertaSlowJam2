@@ -103,5 +103,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAction: Scan debris
-  promptText: Press E to scan
+  promptText: Scan
   disappearWhenComplete: 0

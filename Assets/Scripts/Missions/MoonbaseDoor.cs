@@ -10,7 +10,7 @@ public class MoonbaseDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        interacter = new Interacter(this.gameObject, OnInteract, "Press E to end the day", interactKey: KeyCode.E);
+        interacter = new Interacter(this.gameObject, OnInteract, "End day", interactKey: KeyCode.E);
         interacter.SetInteractable(false);
     }
 

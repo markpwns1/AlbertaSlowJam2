@@ -59,7 +59,8 @@ public class Interacter {
 
     void DisplayPrompt() {
         if (!promptDisplayed) {
-            promptDisplay.DisplayPrompt(promptText);
+            // 32 because a is 97 but A is 65
+            promptDisplay.DisplayPrompt((char)(interactKey - 32) + ": " + promptText);
         }
         promptDisplayed = true;
     }

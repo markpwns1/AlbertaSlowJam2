@@ -115,5 +115,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAction: Collect rock sample
-  promptText: Press E to pick up
+  promptText: Pick up
   disappearWhenComplete: 1
