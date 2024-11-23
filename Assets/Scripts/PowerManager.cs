@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class PowerManager : MonoBehaviour
 {
     public Image powerBar;
-    
-    private float powerLevel;
+   
     private float powerDelta;
 
     private readonly float MAXPOWER = 100f;
+    public float powerLevel = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        powerLevel = MAXPOWER;
         powerDelta = 0;
     }
 

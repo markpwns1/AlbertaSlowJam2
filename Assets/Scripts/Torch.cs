@@ -19,13 +19,22 @@ public class Torch : MonoBehaviour
 
 
     void Update() {
-        if(Input.GetKeyDown(KeyCode.F)) {
-            enabled = !enabled;
-            light.enabled = enabled;
+        if (powerManager.GetPowerLevel() > 0) {
+            if(Input.GetKeyDown(KeyCode.F)) {
+                enabled = !enabled;
+                light.enabled = enabled;
+                if (enabled) {
+                    powerManager.AddUsage(powerUsage);
+                } else {
+                    powerManager.AddUsage(-powerUsage);
+                }
+            }
+        } else {
             if (enabled) {
-                powerManager.AddUsage(powerUsage);
-            } else {
+                // If light is still going when we run out of power, we need to reset the power usage
                 powerManager.AddUsage(-powerUsage);
+                enabled = false;
+                light.enabled = false;
             }
         }
 
