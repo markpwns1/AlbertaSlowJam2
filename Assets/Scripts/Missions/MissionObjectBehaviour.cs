@@ -37,7 +37,7 @@ public class MissionObjectBehaviour : MonoBehaviour {
     private void OnInteract() {
         if (scannable) {
             if (Power.GetPowerLevel() < scanPowerUsage) {
-                // Not enough power
+                GameObject.FindGameObjectWithTag("Message").GetComponent<MessageDisplay>().ShowMessage("Not enough power", true, 1.5f);
                 return;
             }
             Power.AddOrRemovePower(-scanPowerUsage);

@@ -15,6 +15,7 @@ TagManager:
   - Mission4
   - Mission5
   - PowerManager
+  - Message
   layers:
   - Default
   - TransparentFX

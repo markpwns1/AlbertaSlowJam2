@@ -29,6 +29,7 @@ public class MissionHandler : MonoBehaviour
         if (!doorOpened && currentMission.IsComplete()) {
             moonbaseDoor.GetComponent<MoonbaseDoor>().Activate();
             doorOpened = true;
+            GameObject.FindGameObjectWithTag("Message").GetComponent<MessageDisplay>().ShowMessage("Mission complete - return to base.", false, 5f);
         }
     }
 

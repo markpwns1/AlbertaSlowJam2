@@ -20,13 +20,11 @@ public class PromptDisplay : MonoBehaviour
 
     public void DisplayPrompt (string interactText)
     {
-        Debug.Log("Displaying prompt");
         text.text = interactText;
         text.enabled = true;
     }
 
     public void RemovePrompt () {
-        Debug.Log("Removing prompt");
         text.enabled = false;
     }
 }
