@@ -81,9 +81,9 @@ public class TeleportState : State
         Vector3 intendedPosition = player.position + randomDirection;
 
         // Checks for ground to prevent clipping through map due to mountainous terrain
-        Vector3 raycastOrigin = new Vector3(intendedPosition.x, intendedPosition.y + 10f, intendedPosition.z);
+        Vector3 raycastOrigin = new Vector3(intendedPosition.x, intendedPosition.y + 300f, intendedPosition.z);
         RaycastHit hit;
-        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, 20f))
+        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, 300f))
         {
             // If ground surface found , set intended position to hit point
             intendedPosition = hit.point;
