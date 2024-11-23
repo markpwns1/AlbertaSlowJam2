@@ -8,12 +8,14 @@ public class HuntState : State
     private Renderer alienRender;
     public Transform player;
 
+    // Hunt State Variables
     public float walkSpeed;
     public float rotationSpeed = 5f;
     public float maxRange = 80f;
     public bool isAttacking = false;
     public float attackRange = 5f;
 
+    // States
     public TeleportState teleportState;
     public AttackState attackState;
 
@@ -22,8 +24,8 @@ public class HuntState : State
 
     public override State RunCurrentState()
     {
+        // Prevents Model from tipping over
         Vector3 directionToPlayer = (transform.parent.position - player.position).normalized;
-
         if (directionToPlayer != Vector3.zero)
         {
             Quaternion alienRotation = Quaternion.LookRotation(directionToPlayer);
@@ -33,6 +35,8 @@ public class HuntState : State
 
         Debug.Log("in Hunt State");
         float distanceToPlayer = Vector3.Distance(player.position, transform.parent.position);
+
+        // if player goes over Max Range, alien resets to teleport state (player escaped)
         if (distanceToPlayer >= maxRange )
         {
             EnableInvisible();
@@ -44,7 +48,8 @@ public class HuntState : State
         //    Debug.Log("going into attack State");
         //    return attackState;
         //}
-
+        
+        // Hunt State
         MoveTowardsPlayer();
         return this;
     }
@@ -56,6 +61,7 @@ public class HuntState : State
         alienRender = GetComponentInParent<Renderer>();
         DisableInvisible();
 
+        // Change Alien speed variable based on day/difficulty
         WalkSpeedByDay();
         
     }
@@ -80,11 +86,13 @@ public class HuntState : State
 
     private void WalkSpeedByDay()
     {
-        float baseSpeed = 5f;
-        float speedIncrement = 2f;
+        float baseSpeed = 5f; // initial speed
+        float speedIncrement = 2f; // speed goes up by 2 each day
 
+        // 5+ Days being the most difficult
         int effectiveDay = Mathf.Clamp(SharedData.gameDay, 1, 5);
 
+        // Adjust Alien Speed based on Day
         walkSpeed = baseSpeed + (effectiveDay -1) * speedIncrement;
 
         Debug.Log("Day: "+SharedData.gameDay+", Effective Day: "+effectiveDay+", Walk Speed: "+walkSpeed);
