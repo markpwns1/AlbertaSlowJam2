@@ -6,7 +6,10 @@ public class MissionObjectBehaviour : MonoBehaviour {
     public string playerAction;
     public string promptText;
     public bool disappearWhenComplete;
+    public bool scannable;
+    public float scanPowerUsage = 15f;
 
+    private PowerManager Power;
     private MissionObjective objective;
     private Interacter interacter;
 
@@ -14,6 +17,8 @@ public class MissionObjectBehaviour : MonoBehaviour {
     void Start() {
         interacter = new Interacter(this.gameObject, OnInteract, promptText);
         interacter.SetInteractable(false);
+
+        Power = GameObject.FindGameObjectWithTag("PowerManager").GetComponent<PowerManager>();
     }
 
     // Update is called once per frame
@@ -30,6 +35,13 @@ public class MissionObjectBehaviour : MonoBehaviour {
     }
 
     private void OnInteract() {
+        if (scannable) {
+            if (Power.GetPowerLevel() < scanPowerUsage) {
+                // Not enough power
+                return;
+            }
+            Power.AddOrRemovePower(-scanPowerUsage);
+        }
         objective.Fulfill();
         interacter.SetInteractable(false);
     }

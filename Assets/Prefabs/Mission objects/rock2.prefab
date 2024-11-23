@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6905ae36cddad84488fbecf3a212730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: {fileID: 0}
   playerAction: Collect rock sample
   promptText: Pick up
   disappearWhenComplete: 1
+  scannable: 0
+  scanPowerUsage: 15
