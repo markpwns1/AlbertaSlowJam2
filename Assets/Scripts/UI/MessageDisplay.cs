@@ -18,7 +18,7 @@ public class MessageDisplay : MonoBehaviour
     {
     }
 
-    public void ShowMessage(string message, bool urgent, float timeSeconds = 5f) {
+    public void ShowMessage(string message, bool urgent = false, float timeSeconds = 5f) {
         text.text = message;
         if (urgent) {
             text.color = Color.red;

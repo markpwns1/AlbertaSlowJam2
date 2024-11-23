@@ -6,11 +6,13 @@ public class LightSideTrigger : MonoBehaviour
 {
     public float sunRechargeRate = 2f;
     private PowerManager powerManager;
+    private bool flashlightMessageShown;
 
     // Start is called before the first frame update
     void Start()
     {
         powerManager = GameObject.FindGameObjectWithTag("PowerManager").GetComponent<PowerManager>();
+        flashlightMessageShown = false;
     }
 
     // Update is called once per frame
@@ -32,6 +34,10 @@ public class LightSideTrigger : MonoBehaviour
             Debug.Log("Player is in dark side");
             // Stop recharging power
             powerManager.AddUsage(sunRechargeRate);
+            if (!flashlightMessageShown) {
+                GameObject.FindGameObjectWithTag("Message").GetComponent<MessageDisplay>().ShowMessage("Press F to toggle flashlight");
+                flashlightMessageShown = true;
+            }
         }
     }
 }
