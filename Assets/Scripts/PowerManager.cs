@@ -8,7 +8,6 @@ public class PowerManager : MonoBehaviour
     public Image powerBar;
     
     private float powerLevel;
-    private bool powerChanging;
     private float powerDelta;
 
     private readonly float MAXPOWER = 100f;
@@ -18,25 +17,18 @@ public class PowerManager : MonoBehaviour
     {
         powerLevel = MAXPOWER;
         powerDelta = 0;
-        SetUsage(-5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (powerChanging) {
-            powerLevel = Mathf.Clamp(powerLevel + powerDelta * Time.deltaTime, 0, MAXPOWER);
-        }
+        powerLevel = Mathf.Clamp(powerLevel + powerDelta * Time.deltaTime, 0, MAXPOWER);
         powerBar.rectTransform.localScale = new Vector3(5*(powerLevel / MAXPOWER), powerBar.rectTransform.localScale.y, powerBar.rectTransform.localScale.z);
     }
 
-    public void SetUsage (float powerPerSec) {
-        powerDelta = powerPerSec;
-        powerChanging = true;
-    }
-
-    public void StopUsage () {
-        powerChanging = false;
+    public void AddUsage (float powerPerSec) {
+        // Positive usage = negative power delta
+        powerDelta -= powerPerSec;
     }
 
     public void AddOrRemovePower (float power) {
