@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
-    //public GameObject gameOverUI;
+    public GameObject gameOverUI;
 
-    //public AudioClip deathSound;
+    public AudioClip deathSound;
 
     private Transform playerTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        //gameOverUI.SetActive(false);
+        gameOverUI.SetActive(false);
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -36,14 +36,14 @@ public class GameOverManager : MonoBehaviour
     public void ShowGameOver()
     {
         Debug.Log("Game Over");
-        // Play the death sound at the player's position
-        //if (playerTransform != null && deathSound != null)
-        //{
-        //    AudioSource.PlayClipAtPoint(deathSound, playerTransform.position);
-        //}
+        //Play the death sound at the player's position
+        if (playerTransform != null && deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, playerTransform.position);
+        }
 
-        // Display the GameOver UI and freeze the game
-        //gameOverUI.SetActive(true);
+        //Display the GameOver UI and freeze the game
+        gameOverUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
